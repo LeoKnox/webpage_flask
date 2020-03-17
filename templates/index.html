@@ -3,4 +3,32 @@
 {% block content %}
 <h1>Index</h1>
 <p>Starting a new dugeon</p>
+{% if dungeons|length < 1 %}
+<p>There are no dungeons make some!</p>
+{% else %}
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>Added</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dungeon in dungeons %}
+        <tr>
+            <td><a href="">{{ dungeon.name }}</a></td>
+            <td>{{ dungeon.create_at.date() }}</td>
+            <td><a href="">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<form action="/" method="POST">
+    <label for="newItem">New Item:</label>
+    <input type="text" name="name" id="newitem">
+    <button type="submit">Add</button>
+</form>
 {% endblock content %}
